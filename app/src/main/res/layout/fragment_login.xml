@@ -20,6 +20,9 @@
             android:layout_height="wrap_content"
             android:hint="User Name"
             android:drawablePadding="10dp"
+            android:textColorHint="#ffffff"
+            android:textSize="20sp"
+            android:maxLines="1"
             android:drawableLeft="@drawable/ic_user_24dp"
             />
     </android.support.design.widget.TextInputLayout>
@@ -37,6 +40,10 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:drawablePadding="10dp"
+            android:textColorHint="#ffffff"
+            android:textSize="20sp"
+            android:inputType="textPassword"
+            android:maxLines="1"
             android:drawableLeft="@drawable/ic_lock_open_24dp"
             />
 
