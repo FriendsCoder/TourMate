@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#a89fdaf2"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/ibHomeMoments"
+                android:layout_width="@dimen/home_icon_size"
+                android:layout_height="@dimen/home_icon_size"
+                android:layout_gravity="center"
+                android:background="@drawable/moment" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Moments"
+                android:textColor="@color/home_icon_text"
+                android:textSize="@dimen/home_text_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/ibHomeBudgets"
+                android:layout_width="@dimen/home_icon_size"
+                android:layout_height="@dimen/home_icon_size"
+                android:layout_gravity="center"
+                android:background="@drawable/budget" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Budgets"
+                android:textColor="@color/home_icon_text"
+                android:textSize="@dimen/home_text_size" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/ibHomeExpenses"
+                android:layout_width="@dimen/home_icon_size"
+                android:layout_height="@dimen/home_icon_size"
+                android:layout_gravity="center"
+                android:background="@drawable/expense" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Expenses"
+                android:textColor="@color/home_icon_text"
+                android:textSize="@dimen/home_text_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/ibHomeNearby"
+                android:layout_width="@dimen/home_icon_size"
+                android:layout_height="@dimen/home_icon_size"
+                android:layout_gravity="center"
+                android:background="@drawable/nearby_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="NearBy"
+                android:textColor="@color/home_icon_text"
+                android:textSize="@dimen/home_text_size" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/ibHomeWeather"
+            android:layout_width="@dimen/home_icon_size"
+            android:layout_height="@dimen/home_icon_size"
+            android:layout_gravity="center"
+            android:background="@drawable/weather" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Weather"
+            android:textColor="@color/home_icon_text"
+            android:textSize="@dimen/home_text_size" />
+    </LinearLayout>
+</LinearLayout>
