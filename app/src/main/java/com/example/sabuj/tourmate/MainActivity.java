@@ -1,8 +1,10 @@
 package com.example.sabuj.tourmate;
 
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,9 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 
+import com.example.sabuj.tourmate.fragments.HomeMenuFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    FragmentTransaction transaction;
+HomeMenuFragment homeMenuFragment=new HomeMenuFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        getHomeFragment();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +52,12 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    public void getHomeFragment() {
+        HomeMenuFragment homeMenuFragment = new HomeMenuFragment();
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.homeFrameLayout, homeMenuFragment);
+        transaction.commit();
+    }
 
 
     @Override
@@ -86,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            homeMenuFragment.getMomentFragment();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
