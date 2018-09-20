@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,53 +30,69 @@ public class HomeMenuFragment extends Fragment {
         ibHomeMoments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getMomentFragment();
+                transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                getMomentFragment(transaction);
             }
         });
 
         ibHomeBudgets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BudgetsFragment budgetsFragment = new BudgetsFragment();
                 transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.homeFrameLayout, budgetsFragment);
-                transaction.commit();
+                getBudgetFragment(transaction);
             }
         });
         ibHomeExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ExpensesFragment expensesFragment = new ExpensesFragment();
                 transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.homeFrameLayout, expensesFragment);
-                transaction.commit();
+                getExpensesFragment(transaction);
             }
         });
 
         ibHomeNearby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NearbyFragment nearbyFragment = new NearbyFragment();
                 transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.homeFrameLayout, nearbyFragment);
-                transaction.commit();
+                getNearbyFragment(transaction);
             }
         });
 
         ibHomeWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WeatherFragment weatherFragment = new WeatherFragment();
                 transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.homeFrameLayout, weatherFragment);
-                transaction.commit();
+                getWeatherFragment(transaction);
             }
         });
     }
 
-    public void getMomentFragment() {
+    private void getWeatherFragment(FragmentTransaction transaction) {
+        WeatherFragment weatherFragment = new WeatherFragment();
+        transaction.replace(R.id.homeFrameLayout, weatherFragment);
+        transaction.commit();
+    }
+
+    private void getNearbyFragment(FragmentTransaction transaction) {
+        NearbyFragment nearbyFragment = new NearbyFragment();
+        transaction.replace(R.id.homeFrameLayout, nearbyFragment);
+        transaction.commit();
+    }
+
+    private void getExpensesFragment(FragmentTransaction transaction) {
+        ExpensesFragment expensesFragment = new ExpensesFragment();
+        transaction.replace(R.id.homeFrameLayout, expensesFragment);
+        transaction.commit();
+    }
+
+    private void getBudgetFragment(FragmentTransaction transaction) {
+        BudgetsFragment budgetsFragment = new BudgetsFragment();
+        transaction.replace(R.id.homeFrameLayout, budgetsFragment);
+        transaction.commit();
+    }
+
+    public void getMomentFragment(FragmentTransaction transaction) {
         MomentsFragment momentsFragment = new MomentsFragment();
-        transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.homeFrameLayout, momentsFragment);
         transaction.commit();
     }

@@ -66,13 +66,13 @@ public class LoginFragment extends Fragment {
                                 Intent intent = new Intent(getActivity(), MainActivity.class);
                                 Common.currentUser = user;
                                 startActivity(intent);
-                                getActivity().finish();
+                                //getActivity().finish();
                             } else {
                                 Toast.makeText(getActivity(), "Wrong Username or Password ! Please try again.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             Toast.makeText(getActivity(), "User Not Exist in Database !", Toast.LENGTH_SHORT).show();
-                            getActivity().finish();
+                           // getActivity().finish();
                         }
                         dialog.dismiss();
                     }

@@ -17,11 +17,13 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 
 import com.example.sabuj.tourmate.fragments.HomeMenuFragment;
+import com.example.sabuj.tourmate.fragments.MomentsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FragmentTransaction transaction;
-HomeMenuFragment homeMenuFragment=new HomeMenuFragment();
+    HomeMenuFragment homeMenuFragment = new HomeMenuFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +68,8 @@ HomeMenuFragment homeMenuFragment=new HomeMenuFragment();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+           // super.onBackPressed();
+            getHomeFragment();
         }
     }
 
@@ -99,7 +102,9 @@ HomeMenuFragment homeMenuFragment=new HomeMenuFragment();
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            homeMenuFragment.getMomentFragment();
+
+            transaction = getSupportFragmentManager().beginTransaction();
+            homeMenuFragment.getMomentFragment(transaction);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
