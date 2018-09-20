@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
         HomeMenuFragment homeMenuFragment = new HomeMenuFragment();
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.homeFrameLayout, homeMenuFragment);
+        transaction.addToBackStack("HomeMenuFragment");
         transaction.commit();
     }
 
@@ -57,9 +58,8 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            // super.onBackPressed();
-            getHomeFragment();
-        }
+            super.onBackPressed();
+            }
     }
 
     @Override

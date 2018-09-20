@@ -3,7 +3,6 @@ package com.example.sabuj.tourmate.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,9 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
-import android.Manifest;
 
 import com.example.sabuj.tourmate.R;
 import com.example.sabuj.tourmate.models.User;
@@ -40,10 +37,9 @@ public class SignUpFragment extends Fragment {
     Button btnRegister;
     private DatabaseReference table_user;
     String userPhoto;
-    ImageButton ivUserPhoto,ibCameraDialog,ibGalleryDialog;
+    ImageButton ibUserPhoto,ibCameraDialog,ibGalleryDialog;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    //private FirebaseDatabase database;
     private Dialog dialog;
 
     @Override
@@ -51,7 +47,7 @@ public class SignUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         initialization(view);
-        ivUserPhoto.setOnClickListener(new View.OnClickListener() {
+        ibUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage();
@@ -75,6 +71,7 @@ public class SignUpFragment extends Fragment {
                                     etAddress.getText().toString());
                             table_user.child(etUserName.getText().toString()).setValue(user);
                             Toast.makeText(getActivity(), "Successfully Registered.", Toast.LENGTH_SHORT).show();
+                            clearData();
                         }
                     }
 
@@ -86,6 +83,15 @@ public class SignUpFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void clearData() {
+        etFullName.setText("");
+        etUserName.setText("");
+        etPassword.setText("");
+        etContactNo.setText("");
+        etAddress.setText("");
+        ibUserPhoto.setImageResource(R.drawable.gallery);
     }
 
     private void selectImage() {
@@ -134,7 +140,7 @@ public class SignUpFragment extends Fragment {
         if (requestCode==REQUEST_IMAGE_CAPTURE && resultCode==RESULT_OK){
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ivUserPhoto.setImageBitmap(imageBitmap);
+            ibUserPhoto.setImageBitmap(imageBitmap);
             userPhoto = encodeToBase64(imageBitmap, Bitmap.CompressFormat.JPEG, 100);
         }
     }
@@ -144,7 +150,7 @@ public class SignUpFragment extends Fragment {
         return Base64.encodeToString(byteArrayOS.toByteArray(), Base64.DEFAULT);
     }
     private void initialization(View view) {
-        ivUserPhoto = view.findViewById(R.id.ivUserPhoto);
+        ibUserPhoto = view.findViewById(R.id.ivUserPhoto);
         etFullName = view.findViewById(R.id.etFullName);
         etUserName = view.findViewById(R.id.etUserName);
         etPassword = view.findViewById(R.id.etPassword);

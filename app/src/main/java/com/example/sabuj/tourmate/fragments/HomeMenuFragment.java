@@ -69,30 +69,35 @@ public class HomeMenuFragment extends Fragment {
     public void getWeatherFragment(FragmentTransaction transaction) {
         WeatherFragment weatherFragment = new WeatherFragment();
         transaction.replace(R.id.homeFrameLayout, weatherFragment);
+        transaction.addToBackStack("WeatherFragment");
         transaction.commit();
     }
 
     public void getNearbyFragment(FragmentTransaction transaction) {
         NearbyFragment nearbyFragment = new NearbyFragment();
         transaction.replace(R.id.homeFrameLayout, nearbyFragment);
+        transaction.addToBackStack("NearbyFragment");
         transaction.commit();
     }
 
     public void getExpensesFragment(FragmentTransaction transaction) {
         ExpensesFragment expensesFragment = new ExpensesFragment();
         transaction.replace(R.id.homeFrameLayout, expensesFragment);
+        transaction.addToBackStack("ExpensesFragment");
         transaction.commit();
     }
 
     public void getEventsFragment(FragmentTransaction transaction) {
         EventsFragment eventsFragment = new EventsFragment();
         transaction.replace(R.id.homeFrameLayout, eventsFragment);
+        transaction.addToBackStack("EventsFragment");
         transaction.commit();
     }
 
     public void getMomentFragment(FragmentTransaction transaction) {
         MomentsFragment momentsFragment = new MomentsFragment();
         transaction.replace(R.id.homeFrameLayout, momentsFragment);
+        transaction.addToBackStack("MomentsFragment");
         transaction.commit();
     }
 

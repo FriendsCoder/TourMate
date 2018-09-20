@@ -7,5 +7,6 @@
     <color name="black">#000000</color>
     <color name="home_icon_text">#020afa</color>
     <color name="orange">#fa600e</color>
+    <color name="save_button">#5c9bfa</color>
 
 </resources>

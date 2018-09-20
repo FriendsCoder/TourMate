@@ -26,6 +26,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         if (firebaseUser != null) {
             finish();
             startActivity(new Intent(LoginRegisterActivity.this, MainActivity.class));
+            System.out.println(">>>>>>>>>>>>>>>>>>>"+firebaseUser.toString()+" LogIn");
         }
         setContentView(R.layout.activity_login_register);
         btnLogin = findViewById(R.id.btnLogin);
