@@ -21,7 +21,7 @@
                 android:layout_width="@dimen/home_icon_size"
                 android:layout_height="@dimen/home_icon_size"
                 android:layout_gravity="center"
-                android:background="@drawable/moment" />
+                android:background="@drawable/moments" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,17 +39,17 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/ibHomeBudgets"
+                android:id="@+id/ibHomeEvents"
                 android:layout_width="@dimen/home_icon_size"
                 android:layout_height="@dimen/home_icon_size"
                 android:layout_gravity="center"
-                android:background="@drawable/budget" />
+                android:background="@drawable/events" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Budgets"
+                android:text="Events"
                 android:textColor="@color/home_icon_text"
                 android:textSize="@dimen/home_text_size" />
         </LinearLayout>

@@ -14,10 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageButton;
 
 import com.example.sabuj.tourmate.fragments.HomeMenuFragment;
-import com.example.sabuj.tourmate.fragments.MomentsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -110,9 +108,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_expenses) {
             transaction = getSupportFragmentManager().beginTransaction();
             homeMenuFragment.getExpensesFragment(transaction);
-        } else if (id == R.id.nav_budgets) {
+        } else if (id == R.id.nav_events) {
             transaction = getSupportFragmentManager().beginTransaction();
-            homeMenuFragment.getBudgetFragment(transaction);
+            homeMenuFragment.getEventsFragment(transaction);
         } else if (id == R.id.nav_weather) {
             transaction = getSupportFragmentManager().beginTransaction();
             homeMenuFragment.getWeatherFragment(transaction);

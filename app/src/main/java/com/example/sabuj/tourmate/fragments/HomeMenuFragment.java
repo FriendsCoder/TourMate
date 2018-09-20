@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import com.example.sabuj.tourmate.R;
 
 public class HomeMenuFragment extends Fragment {
-    ImageButton ibHomeMoments, ibHomeBudgets, ibHomeExpenses, ibHomeNearby, ibHomeWeather;
+    ImageButton ibHomeMoments, ibHomeEvents, ibHomeExpenses, ibHomeNearby, ibHomeWeather;
     FragmentTransaction transaction;
 
     @Nullable
@@ -34,11 +34,11 @@ public class HomeMenuFragment extends Fragment {
             }
         });
 
-        ibHomeBudgets.setOnClickListener(new View.OnClickListener() {
+        ibHomeEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                getBudgetFragment(transaction);
+                getEventsFragment(transaction);
             }
         });
         ibHomeExpenses.setOnClickListener(new View.OnClickListener() {
@@ -84,9 +84,9 @@ public class HomeMenuFragment extends Fragment {
         transaction.commit();
     }
 
-    public void getBudgetFragment(FragmentTransaction transaction) {
-        BudgetsFragment budgetsFragment = new BudgetsFragment();
-        transaction.replace(R.id.homeFrameLayout, budgetsFragment);
+    public void getEventsFragment(FragmentTransaction transaction) {
+        EventsFragment eventsFragment = new EventsFragment();
+        transaction.replace(R.id.homeFrameLayout, eventsFragment);
         transaction.commit();
     }
 
@@ -98,7 +98,7 @@ public class HomeMenuFragment extends Fragment {
 
     private void initialization(View view) {
         ibHomeMoments = view.findViewById(R.id.ibHomeMoments);
-        ibHomeBudgets = view.findViewById(R.id.ibHomeBudgets);
+        ibHomeEvents = view.findViewById(R.id.ibHomeEvents);
         ibHomeExpenses = view.findViewById(R.id.ibHomeExpenses);
         ibHomeNearby = view.findViewById(R.id.ibHomeNearby);
         ibHomeWeather = view.findViewById(R.id.ibHomeWeather);
