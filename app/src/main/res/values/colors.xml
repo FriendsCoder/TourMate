@@ -6,5 +6,6 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="home_icon_text">#020afa</color>
+    <color name="orange">#fa600e</color>
 
 </resources>
