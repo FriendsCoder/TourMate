@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-           // super.onBackPressed();
+            // super.onBackPressed();
             getHomeFragment();
         }
     }
@@ -101,18 +101,21 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-
+        if (id == R.id.nav_moments) {
             transaction = getSupportFragmentManager().beginTransaction();
             homeMenuFragment.getMomentFragment(transaction);
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_nearby) {
+            transaction = getSupportFragmentManager().beginTransaction();
+            homeMenuFragment.getNearbyFragment(transaction);
+        } else if (id == R.id.nav_expenses) {
+            transaction = getSupportFragmentManager().beginTransaction();
+            homeMenuFragment.getExpensesFragment(transaction);
+        } else if (id == R.id.nav_budgets) {
+            transaction = getSupportFragmentManager().beginTransaction();
+            homeMenuFragment.getBudgetFragment(transaction);
+        } else if (id == R.id.nav_weather) {
+            transaction = getSupportFragmentManager().beginTransaction();
+            homeMenuFragment.getWeatherFragment(transaction);
         } else if (id == R.id.nav_send) {
 
         }

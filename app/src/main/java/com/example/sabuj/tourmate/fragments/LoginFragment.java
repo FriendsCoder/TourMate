@@ -11,15 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.sabuj.tourmate.MainActivity;
 import com.example.sabuj.tourmate.R;
 import com.example.sabuj.tourmate.models.Common;
 import com.example.sabuj.tourmate.models.User;
-
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,17 +25,18 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class LoginFragment extends Fragment {
-    EditText etLoginUserName, etLoginPassword;
-    Button btnLoginCheck;
-    FirebaseDatabase database;
-    DatabaseReference table_user;
-    ProgressDialog dialog;
+    private EditText etLoginUserName, etLoginPassword;
+    private Button btnLoginCheck;
+    private FirebaseDatabase database;
+    private DatabaseReference table_user;
+    private ProgressDialog dialog;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+         return inflater.inflate(R.layout.fragment_login, container, false);
+
     }
 
     @Override
@@ -72,7 +70,7 @@ public class LoginFragment extends Fragment {
                             }
                         } else {
                             Toast.makeText(getActivity(), "User Not Exist in Database !", Toast.LENGTH_SHORT).show();
-                           // getActivity().finish();
+                            // getActivity().finish();
                         }
                         dialog.dismiss();
                     }
