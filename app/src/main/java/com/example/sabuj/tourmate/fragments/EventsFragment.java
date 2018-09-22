@@ -108,7 +108,7 @@ public class EventsFragment extends Fragment {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         AddEventsFragment addEventsFragment = new AddEventsFragment();
         transaction.replace(R.id.homeFrameLayout, addEventsFragment);
-        transaction.addToBackStack("EventsFragment");
+        transaction.addToBackStack("FragmentList");
         transaction.commit();
     }
 }
