@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class EventsFragment extends Fragment {
     private DatabaseReference refEvent;
     private DatabaseReference refUserEvent;
-    ArrayList<Event> eventsList = new ArrayList<>();
+    ArrayList<Event> eventsList;
     RecyclerView recyclerView;
     ProgressBar progressBar;
     private FloatingActionButton fab;
@@ -59,7 +59,8 @@ public class EventsFragment extends Fragment {
         Wave wave = new Wave();
         progressBar.setIndeterminateDrawable(wave);
         progressBar.setVisibility(View.VISIBLE);
-      //  eventsList.clear();
+        eventsList = new ArrayList<>();
+        //  eventsList.clear();
         refUserEvent.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -69,6 +70,14 @@ public class EventsFragment extends Fragment {
                     eventsList.add(event);
                 }
 
+                if (eventsList != null && eventsList.size() > 0) {
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                    recyclerView.setLayoutManager(layoutManager);
+                    eventsAdapter = new EventsAdapter(getContext(), eventsList);
+                    recyclerView.setAdapter(eventsAdapter);
+                }
+
+
             }
 
             @Override
@@ -77,10 +86,7 @@ public class EventsFragment extends Fragment {
             }
         });
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        eventsAdapter = new EventsAdapter(getContext(), eventsList);
-        recyclerView.setAdapter(eventsAdapter);
+
         // eventsAdapter.notifyDataSetChanged();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
