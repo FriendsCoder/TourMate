@@ -8,19 +8,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.sabuj.tourmate.R;
 import com.example.sabuj.tourmate.adapters.EventsAdapter;
 import com.example.sabuj.tourmate.models.Common;
 import com.example.sabuj.tourmate.models.Event;
 import com.github.ybq.android.spinkit.style.Wave;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +33,7 @@ public class EventsFragment extends Fragment {
     ArrayList<Event> eventsList;
     RecyclerView recyclerView;
     ProgressBar progressBar;
-    private FloatingActionButton fab;
+    private FloatingActionButton fabEvent;
     EventsAdapter eventsAdapter;
 
     @Nullable
@@ -52,7 +49,6 @@ public class EventsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         refEvent = FirebaseDatabase.getInstance().getReference("Events");
-
         String user = Common.currentUser.getUserName();
         refUserEvent = refEvent.child(user);
 
@@ -75,6 +71,7 @@ public class EventsFragment extends Fragment {
                     recyclerView.setLayoutManager(layoutManager);
                     eventsAdapter = new EventsAdapter(getContext(), eventsList);
                     recyclerView.setAdapter(eventsAdapter);
+                    eventsAdapter.notifyDataSetChanged();
                 }
 
 
@@ -87,8 +84,7 @@ public class EventsFragment extends Fragment {
         });
 
 
-        // eventsAdapter.notifyDataSetChanged();
-        fab.setOnClickListener(new View.OnClickListener() {
+        fabEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addEventFragment();
@@ -99,7 +95,7 @@ public class EventsFragment extends Fragment {
 
 
     private void initialization(View view) {
-        fab = view.findViewById(R.id.fab_event);
+        fabEvent = view.findViewById(R.id.fab_event);
         recyclerView = view.findViewById(R.id.rv_events);
         progressBar = view.findViewById(R.id.spin_progress);
     }

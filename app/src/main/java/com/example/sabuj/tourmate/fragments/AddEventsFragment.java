@@ -30,7 +30,7 @@ import java.util.Calendar;
 public class AddEventsFragment extends Fragment {
     private EditText etDestination, etBudget;
     private Button btnFromDate, btnToDate, btnEventSave;
-    private String date, fromDate, toDate;
+    private String  fromDate, toDate;
     private DatabaseReference refEvent;
     private DatabaseReference refUserEvent;
 
@@ -88,9 +88,7 @@ public class AddEventsFragment extends Fragment {
                 refUserEvent.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Event event = new Event(etDestination.getText().toString(),
-                                etBudget.getText().toString()
-                                , fromDate, toDate);
+                        Event event = new Event(etDestination.getText().toString(), etBudget.getText().toString(), fromDate, toDate);
                         refUserEvent.child(etDestination.getText().toString()).setValue(event);
                         Toast.makeText(getActivity(), "Successfully saved event.", Toast.LENGTH_SHORT).show();
                         clearData();
