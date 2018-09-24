@@ -2,6 +2,7 @@ package com.example.sabuj.tourmate.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class LoginFragment extends Fragment {
     private EditText etLoginUserName, etLoginPassword;
@@ -33,6 +36,11 @@ public class LoginFragment extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference table_user;
     private ProgressDialog dialog;
+
+
+    SharedPreferences sharedPreferences;
+    final static String SHARED_NAME_STRING = "sharedp";
+    static SharedPreferences.Editor preferenceEditor;
 
 
     @Override
@@ -66,7 +74,19 @@ public class LoginFragment extends Fragment {
                                 Toast.makeText(getActivity(), "Sign In Successfully ! ", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getActivity(), MainActivity.class);
                                 Common.currentUser = user;
+
+                                sharedPreferences = getActivity().getSharedPreferences(SHARED_NAME_STRING, MODE_PRIVATE);
+
+
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putBoolean("isLogin", true);
+                                editor.apply();
+                                preferenceEditor = sharedPreferences.edit();
+                                preferenceEditor.apply();
+
+
                                 startActivity(intent);
+
                                 //getActivity().finish();
                             } else {
                                 Toast.makeText(getActivity(), "Wrong Username or Password ! Please try again.", Toast.LENGTH_SHORT).show();
