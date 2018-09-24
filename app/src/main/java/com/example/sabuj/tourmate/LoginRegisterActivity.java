@@ -1,9 +1,11 @@
 package com.example.sabuj.tourmate;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,11 +20,15 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+
+
         if (firebaseUser != null) {
             finish();
             startActivity(new Intent(LoginRegisterActivity.this, MainActivity.class));
@@ -61,5 +67,11 @@ public class LoginRegisterActivity extends AppCompatActivity {
         btnSignup.setBackgroundResource(R.drawable.button_background);
         btnLogin.setBackgroundResource(R.drawable.button_background_selected);
         transaction.commit();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.finish();
     }
 }

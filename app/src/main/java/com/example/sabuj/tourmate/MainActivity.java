@@ -1,10 +1,13 @@
 package com.example.sabuj.tourmate;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +24,42 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FragmentTransaction transaction;
     HomeMenuFragment homeMenuFragment = new HomeMenuFragment();
+
+    SharedPreferences sharedPreferences;
+    final static String SHARED_NAME_STRING = "sharedp";
+    static SharedPreferences.Editor preferenceEditor;
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        sharedPreferences = getSharedPreferences(MainActivity.SHARED_NAME_STRING, MODE_PRIVATE);
+        boolean initialized = sharedPreferences.getBoolean("initialized", false);
+        boolean isLoging = sharedPreferences.getBoolean("isLogin", false);
+
+        if (!initialized || !isLoging) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("initialized", true);
+            editor.apply();
+            preferenceEditor = sharedPreferences.edit();
+            preferenceEditor.apply();
+
+            Intent intent=new Intent(MainActivity.this,LoginRegisterActivity.class);
+            startActivity(intent);
+            this.finish();
+
+
+
+        } else {
+
+        }
+
+
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +115,23 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+
+            sharedPreferences = getSharedPreferences(SHARED_NAME_STRING, MODE_PRIVATE);
+
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isLogin", false);
+            editor.apply();
+            preferenceEditor = sharedPreferences.edit();
+            preferenceEditor.apply();
+
+            Intent i= new Intent(MainActivity.this,LoginRegisterActivity.class);
+            startActivity(i);
+            this.finish();
+
+            return true;
+        }else if (id == R.id.action_profile) {
             return true;
         }
 
