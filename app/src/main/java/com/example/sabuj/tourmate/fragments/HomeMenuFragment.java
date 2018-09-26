@@ -82,10 +82,11 @@ public class HomeMenuFragment extends Fragment {
     }
 
     public void getExpensesFragment(FragmentTransaction transaction) {
-        ExpensesFragment expensesFragment = new ExpensesFragment();
-        transaction.replace(R.id.homeFrameLayout, expensesFragment);
+        ExpenseEventListFragment expenseEventListFragment = new ExpenseEventListFragment();
+        transaction.replace(R.id.homeFrameLayout, expenseEventListFragment);
         transaction.addToBackStack("FragmentList");
         transaction.commit();
+
     }
 
     public void getEventsFragment(FragmentTransaction transaction) {

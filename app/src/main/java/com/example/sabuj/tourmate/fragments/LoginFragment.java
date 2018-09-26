@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -77,9 +78,11 @@ public class LoginFragment extends Fragment {
 
                                 sharedPreferences = getActivity().getSharedPreferences(SHARED_NAME_STRING, MODE_PRIVATE);
 
-
+                                Gson gson = new Gson();
+                                String userObject = gson.toJson(user);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putBoolean("isLogin", true);
+                                editor.putString("userObject", userObject);
                                 editor.apply();
                                 preferenceEditor = sharedPreferences.edit();
                                 preferenceEditor.apply();

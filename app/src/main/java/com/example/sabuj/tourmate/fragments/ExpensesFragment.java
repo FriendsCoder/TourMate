@@ -69,7 +69,6 @@ public class ExpensesFragment extends Fragment {
                     expenseList.add(expense);
                 }
                 if (expenseList != null && expenseList.size() > 0) {
-
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                     recyclerView.setLayoutManager(layoutManager);
                     expenseAdapter = new ExpenseAdapter(getContext(), expenseList);

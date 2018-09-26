@@ -19,6 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.sabuj.tourmate.fragments.HomeMenuFragment;
+import com.example.sabuj.tourmate.models.Common;
+import com.example.sabuj.tourmate.models.User;
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,8 +31,7 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences sharedPreferences;
     final static String SHARED_NAME_STRING = "sharedp";
     static SharedPreferences.Editor preferenceEditor;
-
-
+    User user;
 
     @Override
     protected void onStart() {
@@ -44,21 +46,16 @@ public class MainActivity extends AppCompatActivity
             editor.apply();
             preferenceEditor = sharedPreferences.edit();
             preferenceEditor.apply();
-
-            Intent intent=new Intent(MainActivity.this,LoginRegisterActivity.class);
+            Intent intent = new Intent(MainActivity.this, LoginRegisterActivity.class);
             startActivity(intent);
             this.finish();
-
-
-
         } else {
-
+            Gson gson = new Gson();
+            String userObject = sharedPreferences.getString("userObject", "");
+            user= gson.fromJson(userObject, User.class);
+            Common.currentUser = user;
         }
-
-
-    }
-
-
+        }
 
 
     @Override
@@ -126,12 +123,12 @@ public class MainActivity extends AppCompatActivity
             preferenceEditor = sharedPreferences.edit();
             preferenceEditor.apply();
 
-            Intent i= new Intent(MainActivity.this,LoginRegisterActivity.class);
+            Intent i = new Intent(MainActivity.this, LoginRegisterActivity.class);
             startActivity(i);
             this.finish();
 
             return true;
-        }else if (id == R.id.action_profile) {
+        } else if (id == R.id.action_profile) {
             return true;
         }
 
