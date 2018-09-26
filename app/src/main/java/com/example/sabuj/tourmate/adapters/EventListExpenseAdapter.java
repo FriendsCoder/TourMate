@@ -10,21 +10,21 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.example.sabuj.tourmate.R;
 import com.example.sabuj.tourmate.fragments.ExpensesFragment;
 import com.example.sabuj.tourmate.models.Common;
 
 import java.util.ArrayList;
 
-public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListViewHolder> {
+public class EventListExpenseAdapter extends RecyclerView.Adapter<EventListExpenseAdapter.EventListViewHolder> {
     private Context context;
     private ArrayList<String> eventListExpense;
     FragmentTransaction transaction;
 
-    public EventListAdapter(Context context, ArrayList<String> eventListExpense) {
+    public EventListExpenseAdapter(Context context, ArrayList<String> eventListExpense, FragmentTransaction transaction) {
         this.context = context;
         this.eventListExpense = eventListExpense;
+        this.transaction=transaction;
     }
 
     @NonNull
@@ -38,17 +38,17 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     public void onBindViewHolder(@NonNull EventListViewHolder holder, final int position) {
         final String eventName = eventListExpense.get(position);
         holder.tvEventList.setText(eventName);
-        System.out.println(eventName);
+
         holder.llEventList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Common.currentEventName = eventName;
-                getExpensesFragment();
+                getExpensesFragment(transaction);
             }
         });
     }
 
-    private void getExpensesFragment() {
+    private void getExpensesFragment(FragmentTransaction transaction) {
         ExpensesFragment expensesFragment = new ExpensesFragment();
         transaction.replace(R.id.homeFrameLayout, expensesFragment);
         transaction.addToBackStack("FragmentList");

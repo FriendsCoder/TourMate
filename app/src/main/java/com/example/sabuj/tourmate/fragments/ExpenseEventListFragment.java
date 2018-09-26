@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,10 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.example.sabuj.tourmate.R;
-import com.example.sabuj.tourmate.adapters.EventListAdapter;
-import com.example.sabuj.tourmate.adapters.EventsAdapter;
+import com.example.sabuj.tourmate.adapters.EventListExpenseAdapter;
 import com.example.sabuj.tourmate.models.Common;
-import com.example.sabuj.tourmate.models.Expense;
 import com.github.ybq.android.spinkit.style.Wave;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +26,7 @@ import java.util.ArrayList;
 
 public class ExpenseEventListFragment extends Fragment {
     RecyclerView recyclerView;
-    EventListAdapter eventListAdapter;
+    EventListExpenseAdapter eventListAdapter;
     ProgressBar progressBar;
     private DatabaseReference refEvent;
     private DatabaseReference refUserEvent;
@@ -63,7 +62,8 @@ public class ExpenseEventListFragment extends Fragment {
                 if (eventList != null && eventList.size() > 0) {
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                     recyclerView.setLayoutManager(layoutManager);
-                    eventListAdapter = new EventListAdapter(getContext(), eventList);
+                    FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                    eventListAdapter = new EventListExpenseAdapter(getContext(), eventList,transaction);
                     recyclerView.setAdapter(eventListAdapter);
                     eventListAdapter.notifyDataSetChanged();
                 }

@@ -29,6 +29,7 @@ public class AddExpenseFragment extends Fragment {
     private Button btnEntryRecord;
     private DatabaseReference refExpense;
     private DatabaseReference refUserExpense;
+    private DatabaseReference refUserEventExpense;
     private SimpleDateFormat dateFormat;
     private SimpleDateFormat timeFormat;
 
@@ -44,7 +45,9 @@ public class AddExpenseFragment extends Fragment {
         initialization(view);
         refExpense = FirebaseDatabase.getInstance().getReference("Expenses");
         String user = Common.currentUser.getUserName();
+        String userEvent=Common.currentEventName;
         refUserExpense = refExpense.child(user);
+        refUserEventExpense=refUserExpense.child(userEvent);
         dateFormat = new SimpleDateFormat("d MMM");
         timeFormat = new SimpleDateFormat("h:mm a");
         btnEntryRecord.setOnClickListener(new View.OnClickListener() {
@@ -52,14 +55,14 @@ public class AddExpenseFragment extends Fragment {
             public void onClick(View v) {
                 final String details = etExpenseDetails.getText().toString();
                 final String amount = etExpenseAmount.getText().toString();
-                refUserExpense.addValueEventListener(new ValueEventListener() {
+                refUserEventExpense.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         currentDate = dateFormat.format(Calendar.getInstance().getTime());
                         currentTime = timeFormat.format(Calendar.getInstance().getTime());
 
                         Expense expense = new Expense(currentDate, currentTime, details, amount);
-                        refUserExpense.child(details).setValue(expense);
+                        refUserEventExpense.child(details).setValue(expense);
                         Toast.makeText(getActivity(), "Successfully saved item.", Toast.LENGTH_SHORT).show();
                         clearData();
                     }

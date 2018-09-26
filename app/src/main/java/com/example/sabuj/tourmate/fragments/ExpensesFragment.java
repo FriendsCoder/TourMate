@@ -33,6 +33,7 @@ import java.util.ArrayList;
 public class ExpensesFragment extends Fragment {
     private DatabaseReference refExpense;
     private DatabaseReference refUserExpense;
+    private DatabaseReference refUserEventExpense;
     ArrayList<Expense> expenseList;
     RecyclerView recyclerView;
     ProgressBar progressBar;
@@ -53,14 +54,16 @@ public class ExpensesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         refExpense = FirebaseDatabase.getInstance().getReference("Expenses");
         String user = Common.currentUser.getUserName();
+        String userEvent=Common.currentEventName;
         refUserExpense = refExpense.child(user);
+        refUserEventExpense=refUserExpense.child(userEvent);
 
         Wave wave = new Wave();
         progressBar.setIndeterminateDrawable(wave);
         progressBar.setVisibility(View.VISIBLE);
         expenseList = new ArrayList<>();
 
-        refUserExpense.addValueEventListener(new ValueEventListener() {
+        refUserEventExpense.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 progressBar.setVisibility(View.INVISIBLE);
