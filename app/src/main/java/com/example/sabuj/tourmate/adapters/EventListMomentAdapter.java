@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.sabuj.tourmate.R;
 import com.example.sabuj.tourmate.fragments.ExpensesFragment;
+import com.example.sabuj.tourmate.fragments.MomentsFragment;
 import com.example.sabuj.tourmate.models.Common;
 
 import java.util.ArrayList;
@@ -37,20 +38,20 @@ public class EventListMomentAdapter extends RecyclerView.Adapter<EventListMoment
     @Override
     public void onBindViewHolder(@NonNull EventListViewHolder holder, final int position) {
         final String eventName = eventListExpense.get(position);
-//        holder.tvEventList.setText(eventName);
-//
-//        holder.llEventList.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Common.currentEventName = eventName;
-//                getExpensesFragment(transaction);
-//            }
-//        });
+        holder.tvEventList.setText(eventName);
+
+        holder.llEventList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Common.currentEventName = eventName;
+                getExpensesFragment(transaction);
+            }
+        });
     }
 
     private void getExpensesFragment(FragmentTransaction transaction) {
-        ExpensesFragment expensesFragment = new ExpensesFragment();
-        transaction.replace(R.id.homeFrameLayout, expensesFragment);
+        MomentsFragment momentsFragment = new MomentsFragment();
+        transaction.replace(R.id.homeFrameLayout, momentsFragment);
         transaction.addToBackStack("FragmentList");
         transaction.commit();
     }
@@ -61,9 +62,13 @@ public class EventListMomentAdapter extends RecyclerView.Adapter<EventListMoment
     }
 
     class EventListViewHolder extends RecyclerView.ViewHolder {
+        TextView tvEventList;
+        LinearLayout llEventList;
 
         public EventListViewHolder(View itemView) {
             super(itemView);
+            tvEventList = itemView.findViewById(R.id.tvEventList);
+            llEventList = itemView.findViewById(R.id.llEventList);
         }
     }
 

@@ -20,7 +20,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.sabuj.tourmate.R;
-import com.example.sabuj.tourmate.models.User;
+import com.example.sabuj.tourmate.models.Common;
+import com.example.sabuj.tourmate.models.Moment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,70 +29,73 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import static android.app.Activity.RESULT_OK;
 
-
-public class SignUpFragment extends Fragment {
-    EditText etFullName, etUserName, etPassword, etContactNo, etAddress;
-    Button btnRegister;
-    private DatabaseReference table_user;
-    String userPhoto;
-    ImageButton ibUserPhoto, ibCameraDialog, ibGalleryDialog;
+public class AddMomentFragment extends Fragment {
+    private EditText etMomentDetails;
+    private Button btnMomentSave;
+    private ImageButton ibMomentImage, ibCameraDialog, ibGalleryDialog;
+    String currentDate, currentTime, momentImage;
+    private DatabaseReference refMoment;
+    private DatabaseReference refUserMoment;
+    private DatabaseReference refUserEventMoment;
+    private SimpleDateFormat dateFormat;
+    private SimpleDateFormat timeFormat;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-
     private Dialog dialog;
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_add_moment, container, false);
         initialization(view);
-        ibUserPhoto.setOnClickListener(new View.OnClickListener() {
+        return view;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        refMoment = FirebaseDatabase.getInstance().getReference("Moments");
+        String user = Common.currentUser.getUserName();
+        String userMoment = Common.currentEventName;
+        refUserMoment = refMoment.child(user);
+        refUserEventMoment = refUserMoment.child(userMoment);
+        dateFormat = new SimpleDateFormat("d MMM");
+        timeFormat = new SimpleDateFormat("h:mm a");
+
+        ibMomentImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage();
             }
         });
-        table_user = FirebaseDatabase.getInstance().getReference("User");
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnMomentSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                table_user.addValueEventListener(new ValueEventListener() {
+                final String momentDetails = etMomentDetails.getText().toString();
+                refUserEventMoment.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child(etUserName.getText().toString()).exists()) {
-                            Toast.makeText(getActivity(), "Username Already Existed. Try another?", Toast.LENGTH_SHORT).show();
-                        } else {
-                            User user = new User(userPhoto,
-                                    etFullName.getText().toString(),
-                                    etUserName.getText().toString(),
-                                    etPassword.getText().toString(),
-                                    etContactNo.getText().toString(),
-                                    etAddress.getText().toString());
-                            table_user.child(etUserName.getText().toString()).setValue(user);
-                            Toast.makeText(getActivity(), "Successfully Registered.", Toast.LENGTH_SHORT).show();
-                            clearData();
-                        }
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        currentDate = dateFormat.format(Calendar.getInstance().getTime());
+                        currentTime = timeFormat.format(Calendar.getInstance().getTime());
+
+                        Moment moment = new Moment(currentDate, currentTime, momentDetails, momentImage);
+                        refUserEventMoment.child(momentDetails).setValue(moment);
+                        Toast.makeText(getActivity(), "Successfully saved Moments.", Toast.LENGTH_SHORT).show();
+                        clearData();
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(getActivity(), databaseError.toString(), Toast.LENGTH_SHORT).show();
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
                     }
                 });
             }
         });
-        return view;
-    }
-
-    private void clearData() {
-        etFullName.setText("");
-        etUserName.setText("");
-        etPassword.setText("");
-        etContactNo.setText("");
-        etAddress.setText("");
-        ibUserPhoto.setImageResource(R.drawable.gallery);
     }
 
     private void selectImage() {
@@ -124,13 +128,11 @@ public class SignUpFragment extends Fragment {
                 Toast.makeText(getActivity(), "gry clicked", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
+    private void clearData() {
+        etMomentDetails.setText("");
+        btnMomentSave.setText("Save Moment");
     }
 
     @Override
@@ -139,8 +141,8 @@ public class SignUpFragment extends Fragment {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ibUserPhoto.setImageBitmap(imageBitmap);
-            userPhoto = encodeToBase64(imageBitmap, Bitmap.CompressFormat.JPEG, 100);
+            ibMomentImage.setImageBitmap(imageBitmap);
+            momentImage = encodeToBase64(imageBitmap, Bitmap.CompressFormat.JPEG, 100);
         }
     }
 
@@ -151,12 +153,8 @@ public class SignUpFragment extends Fragment {
     }
 
     private void initialization(View view) {
-        ibUserPhoto = view.findViewById(R.id.ivUserPhoto);
-        etFullName = view.findViewById(R.id.etFullName);
-        etUserName = view.findViewById(R.id.etUserName);
-        etPassword = view.findViewById(R.id.etPassword);
-        etContactNo = view.findViewById(R.id.etEmmergencyContactNo);
-        etAddress = view.findViewById(R.id.etAddress);
-        btnRegister = view.findViewById(R.id.btnRegister);
+        etMomentDetails = view.findViewById(R.id.etMomentDetails);
+        ibMomentImage = view.findViewById(R.id.ibMomentImage);
+        btnMomentSave = view.findViewById(R.id.btnMomentSave);
     }
 }

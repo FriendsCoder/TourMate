@@ -94,11 +94,11 @@ public class HomeMenuFragment extends Fragment {
         transaction.replace(R.id.homeFrameLayout, eventsFragment);
         transaction.addToBackStack("FragmentList");
         transaction.commit();
-        }
+    }
 
     public void getMomentFragment(FragmentTransaction transaction) {
-        MomentsFragment momentsFragment = new MomentsFragment();
-        transaction.replace(R.id.homeFrameLayout, momentsFragment);
+        MomentEventListFragment momentEventListFragment = new MomentEventListFragment();
+        transaction.replace(R.id.homeFrameLayout, momentEventListFragment);
         transaction.addToBackStack("FragmentList");
         transaction.commit();
     }

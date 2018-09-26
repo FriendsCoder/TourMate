@@ -79,6 +79,7 @@ public class AddExpenseFragment extends Fragment {
     private void clearData() {
         etExpenseDetails.setText("");
         etExpenseAmount.setText("");
+        btnEntryRecord.setText("Entry Record");
     }
 
     private void initialization(View view) {

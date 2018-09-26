@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.example.sabuj.tourmate.R;
-import com.example.sabuj.tourmate.adapters.EventsAdapter;
 import com.example.sabuj.tourmate.adapters.ExpenseAdapter;
 import com.example.sabuj.tourmate.models.Common;
 

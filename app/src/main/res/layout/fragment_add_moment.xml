@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnMomentSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/save_button"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Save Moment"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="28sp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ibMomentImage"
+        android:layout_marginBottom="20dp">
+
+        <EditText
+            android:id="@+id/etMomentDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Moment Details"
+            android:inputType="text"
+            android:paddingLeft="10dp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/ibMomentImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:background="@drawable/camera_moment" />
+
+
+</RelativeLayout>
