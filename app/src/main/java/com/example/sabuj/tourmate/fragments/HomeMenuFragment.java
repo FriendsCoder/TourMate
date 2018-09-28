@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.sabuj.tourmate.R;
+import com.example.sabuj.tourmate.WeatherActivity;
 
 public class HomeMenuFragment extends Fragment {
     ImageButton ibHomeMoments, ibHomeEvents, ibHomeExpenses, ibHomeNearby, ibHomeWeather;
@@ -68,10 +69,11 @@ public class HomeMenuFragment extends Fragment {
     }
 
     public void getWeatherFragment(FragmentTransaction transaction) {
-        WeatherFragment weatherFragment = new WeatherFragment();
-        transaction.replace(R.id.homeFrameLayout, weatherFragment);
-        transaction.addToBackStack("FragmentList");
-        transaction.commit();
+        startActivity(new Intent(getActivity(), WeatherActivity.class));
+//        WeatherFragment weatherFragment = new WeatherFragment();
+//        transaction.replace(R.id.homeFrameLayout, weatherFragment);
+//        transaction.addToBackStack("FragmentList");
+//        transaction.commit();
     }
 
     public void getNearbyFragment(FragmentTransaction transaction) {
