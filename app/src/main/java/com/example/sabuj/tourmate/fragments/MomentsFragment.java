@@ -70,7 +70,8 @@ public class MomentsFragment extends Fragment {
                 if (momentList != null && momentList.size() > 0) {
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                     recyclerView.setLayoutManager(layoutManager);
-                    momentAdapter = new MomentAdapter(getActivity(), momentList);
+                    FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                    momentAdapter = new MomentAdapter(getActivity(), momentList,transaction);
                     recyclerView.setAdapter(momentAdapter);
                     momentAdapter.notifyDataSetChanged();
                 }

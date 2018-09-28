@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -29,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -45,6 +48,7 @@ public class AddMomentFragment extends Fragment {
     private SimpleDateFormat dateFormat;
     private SimpleDateFormat timeFormat;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE_GALLERY = 2;
     private Dialog dialog;
 
     @Nullable
@@ -125,6 +129,10 @@ public class AddMomentFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                startActivityForResult(galleryIntent, REQUEST_IMAGE_CAPTURE_GALLERY);
                 Toast.makeText(getActivity(), "gry clicked", Toast.LENGTH_SHORT).show();
             }
         });
@@ -143,6 +151,20 @@ public class AddMomentFragment extends Fragment {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             ibMomentImage.setImageBitmap(imageBitmap);
             momentImage = encodeToBase64(imageBitmap, Bitmap.CompressFormat.JPEG, 100);
+        }
+        else if (requestCode==REQUEST_IMAGE_CAPTURE_GALLERY && resultCode ==RESULT_OK){
+            if (data!=null){
+                Uri contentURI=data.getData();
+                try{
+                    Bitmap imageBitmap=MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),contentURI);
+                    ibMomentImage.setImageBitmap(imageBitmap);
+                    momentImage = encodeToBase64(imageBitmap, Bitmap.CompressFormat.JPEG, 100);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
