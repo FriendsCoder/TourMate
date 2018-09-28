@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A3EBEA"
+    android:background="@color/weather_background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,7 +12,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/LocationTV"
+            android:id="@+id/tvLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_location_on_black_24dp"
@@ -26,7 +26,7 @@
         android:layout_height="0dp"
         android:layout_margin="3dp"
         android:layout_weight="1"
-        android:background="#84BCB8"
+        android:background="@color/weather_layout_background"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="10dp">
@@ -39,7 +39,6 @@
             android:orientation="vertical">
 
             <TextView
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Today"
@@ -60,9 +59,8 @@
                     android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DayFirstMinForecastTV"
+                    android:id="@+id/tvDayFirstMinForecast"
                     android:layout_width="wrap_content"
-
                     android:layout_height="match_parent"
                     android:textColor="#000000"
                     android:textSize="16dp" />
@@ -78,9 +76,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/FirstDateTV"
-
-
+                android:id="@+id/tvFirstDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -96,22 +92,18 @@
                     android:layout_height="match_parent"
                     android:text="Max : "
                     android:textColor="#000000"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DayFirstMaxForecastTV"
+                    android:id="@+id/tvDayFirstMaxForecast"
                     android:layout_width="wrap_content"
-
                     android:layout_height="match_parent"
                     android:textColor="#000000"
                     android:textSize="16dp" />
 
-
             </LinearLayout>
 
-
         </LinearLayout>
-
 
     </LinearLayout>
 
@@ -120,7 +112,7 @@
         android:layout_height="0dp"
         android:layout_margin="3dp"
         android:layout_weight="1"
-        android:background="#84BCB8"
+        android:background="@color/weather_layout_background"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="10dp">
@@ -133,12 +125,10 @@
             android:orientation="vertical">
 
             <TextView
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tomorrow"
                 android:textColor="#000000"
-
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -149,23 +139,20 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-
                     android:layout_height="match_parent"
                     android:text="Min : "
                     android:textColor="#000000"
                     android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DaySecondMinForecastTV"
+                    android:id="@+id/tvDaySecondMinForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="9.2C"
                     android:textColor="#000000"
                     android:textSize="16dp" />
 
-
             </LinearLayout>
-
 
         </LinearLayout>
 
@@ -176,11 +163,10 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/SecondDateTV"
+                android:id="@+id/tvSecondDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="January 12,2018"
-
                 android:textColor="#000000"
                 android:textSize="16dp" />
 
@@ -192,26 +178,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-
                     android:text="Max : "
                     android:textColor="#000000"
                     android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DaySecondMaxForecastTV"
+                    android:id="@+id/tvDaySecondMaxForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="9.2C"
                     android:textColor="#000000"
                     android:textSize="16dp" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -219,7 +198,7 @@
         android:layout_height="0dp"
         android:layout_margin="3dp"
         android:layout_weight="1"
-        android:background="#84BCB8"
+        android:background="@color/weather_layout_background"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="10dp">
@@ -232,13 +211,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/DayThirdTV"
-
+                android:id="@+id/tvDayThird"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Day Third"
                 android:textColor="#000000"
-
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -255,17 +232,14 @@
                     android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DayThirdMinForecastTV"
+                    android:id="@+id/tvDayThirdMinForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="9.2C"
                     android:textColor="#000000"
                     android:textSize="16dp" />
 
-
             </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -275,11 +249,10 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/ThirdDateTV"
+                android:id="@+id/tvThirdDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="January 11,2018"
-
                 android:textColor="#000000"
                 android:textSize="16dp" />
 
@@ -291,26 +264,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-
                     android:text="Max : "
                     android:textColor="#000000"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DayThirdMaxForecastTV"
+                    android:id="@+id/tvDayThirdMaxForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="18C"
                     android:textColor="#000000"
                     android:textSize="16dp" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -318,7 +284,7 @@
         android:layout_height="0dp"
         android:layout_margin="3dp"
         android:layout_weight="1"
-        android:background="#84BCB8"
+        android:background="@color/weather_layout_background"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="10dp">
@@ -331,12 +297,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/DayFourthTV"
+                android:id="@+id/tvDayFourth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Day Four"
                 android:textColor="#000000"
-
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -347,24 +312,19 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-
                     android:layout_height="match_parent"
                     android:text="Min : "
                     android:textColor="#000000"
                     android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DayFourthMinForecastTV"
+                    android:id="@+id/tvDayFourthMinForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="9.2C"
                     android:textColor="#000000"
                     android:textSize="16dp" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -374,12 +334,10 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/FourthDateTV"
+                android:id="@+id/tvFourthDate"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:text="January 11,2018"
-
                 android:textColor="#000000"
                 android:textSize="16dp" />
 
@@ -396,20 +354,14 @@
                     android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DayFourthMaxForecastTV"
+                    android:id="@+id/tvDayFourthMaxForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="18C"
                     android:textColor="#000000"
                     android:textSize="16dp" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -417,7 +369,7 @@
         android:layout_height="0dp"
         android:layout_margin="3dp"
         android:layout_weight="1"
-        android:background="#84BCB8"
+        android:background="@color/weather_layout_background"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="10dp">
@@ -430,13 +382,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/DayFifthTV"
-
+                android:id="@+id/tvDayFifth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Day Five"
                 android:textColor="#000000"
-
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -447,24 +397,19 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-
                     android:layout_height="match_parent"
                     android:text="Min : "
                     android:textColor="#000000"
                     android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DayFifthMinForecastTV"
+                    android:id="@+id/tvDayFifthMinForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="9.2C"
                     android:textColor="#000000"
                     android:textSize="16dp" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -474,12 +419,10 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/FifthDateTV"
+                android:id="@+id/tvFifthDate"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:text="January 15,2018"
-
                 android:textColor="#000000"
                 android:textSize="16dp" />
 
@@ -491,29 +434,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-
                     android:text="Max : "
                     android:textColor="#000000"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/DayFifthMaxForecastTV"
+                    android:id="@+id/tvDayFifthMaxForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="18C"
                     android:textColor="#000000"
                     android:textSize="16dp" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
-
-
     </LinearLayout>
-
-
 </LinearLayout>
 
 

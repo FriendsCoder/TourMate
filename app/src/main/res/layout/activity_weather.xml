@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:gravity="center"
-            android:text="Weather Map"
+            android:text="Weather"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 

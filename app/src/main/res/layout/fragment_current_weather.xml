@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#66fafc"
+    android:background="@color/weather_background"
     android:orientation="vertical"
     tools:context="com.example.sabuj.tourmate.fragments.CurrentWeatherFragment">
 
@@ -109,7 +109,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="3dp"
             android:layout_weight="1"
-            android:background="#6cbfba"
+            android:background="@color/weather_layout_background"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -165,7 +165,7 @@
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
             android:layout_weight="1"
-            android:background="#6cbfba"
+            android:background="@color/weather_layout_background"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -219,7 +219,7 @@
             android:layout_marginLeft="3dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="#6cbfba"
+            android:background="@color/weather_layout_background"
             android:gravity="center"
             android:orientation="vertical">
 
