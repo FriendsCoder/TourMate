@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.example.sabuj.tourmate.MapsActivity;
 import com.example.sabuj.tourmate.R;
 import com.example.sabuj.tourmate.WeatherActivity;
 
@@ -77,10 +78,11 @@ public class HomeMenuFragment extends Fragment {
     }
 
     public void getNearbyFragment(FragmentTransaction transaction) {
-        NearbyFragment nearbyFragment = new NearbyFragment();
-        transaction.replace(R.id.homeFrameLayout, nearbyFragment);
-        transaction.addToBackStack("FragmentList");
-        transaction.commit();
+        startActivity(new Intent(getActivity(), MapsActivity.class));
+//        NearbyFragment nearbyFragment = new NearbyFragment();
+//        transaction.replace(R.id.homeFrameLayout, nearbyFragment);
+//        transaction.addToBackStack("FragmentList");
+//        transaction.commit();
     }
 
     public void getExpensesFragment(FragmentTransaction transaction) {

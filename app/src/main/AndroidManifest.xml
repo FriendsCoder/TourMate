@@ -3,6 +3,9 @@
     package="com.example.sabuj.tourmate">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -18,7 +21,7 @@
         <activity
             android:name=".LoginRegisterActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -28,9 +31,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WeatherActivity"
+        <activity
+            android:name=".WeatherActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppThemeWeather"/>
+            android:theme="@style/AppThemeWeather" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <activity android:name=".MapsActivity"
+            android:label="@string/title_activity_maps" ></activity>
     </application>
 
 </manifest>
